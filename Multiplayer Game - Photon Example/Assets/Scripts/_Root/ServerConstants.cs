@@ -5,6 +5,7 @@ using UnityEngine;
 public class ServerConstants
 {
     public const int MAX_PLAYERS_IN_ROOM = 6;
+    public const int MIN_PLAYERS_IN_ROOM = 2;
     public const string GAME_VERSION = "0.01";
 
 

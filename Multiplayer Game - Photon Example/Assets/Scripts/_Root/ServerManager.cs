@@ -87,14 +87,15 @@ public class ServerManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        
+
     }
 
     public override void OnJoinedRoom()
     {
+
         Debug.Log("Joined to room");
 
-        if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
+        if (PhotonNetwork.CurrentRoom.PlayerCount < ServerConstants.MIN_PLAYERS_IN_ROOM)
         {
             MenuCanvas.Instance.SetConsoleText(ServerConstants.MSG_WAITING);
         }
@@ -138,12 +139,14 @@ public class ServerManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        if(PhotonNetwork.CurrentRoom.PlayerCount >= ServerConstants.MAX_PLAYERS_IN_ROOM)
+        Debug.Log("Entered to room");
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount >= ServerConstants.MAX_PLAYERS_IN_ROOM)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
         }
 
-        if (PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+        if (PhotonNetwork.CurrentRoom.PlayerCount >= ServerConstants.MIN_PLAYERS_IN_ROOM)
         {
             PhotonNetwork.LoadLevel(2);
         }
