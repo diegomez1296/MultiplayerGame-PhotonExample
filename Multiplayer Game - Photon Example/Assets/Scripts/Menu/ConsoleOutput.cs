@@ -12,7 +12,7 @@ public class ConsoleOutput : MonoBehaviour
 
     public void SetText(string text, float time = 0f)
     {
-        StartCoroutine(CoSetText(text, time));
+        if (textMeshPro != null) StartCoroutine(CoSetText(text, time));
     }
 
     private IEnumerator CoSetText(string text, float time)
